@@ -11,6 +11,7 @@ const DIALOG_MOVE_PROMPT = "Suh, what move do you make?";
 const HELP_MESSAGE = 'Just say rock, paper, or scissors!';
 const HELP_REPROMPT = 'Hi! Please say rock, paper, or scissors!';
 const STOP_MESSAGE = 'Goodbye!';
+const REMATCH = 'Want to play again?';
 
 const MOVES = [
     'rock',
@@ -40,20 +41,39 @@ const handlers = {
   this.response.speak(speechOutput);
   this.emit(':responseReady');
 
-    'ReslultIntent': function (){
+    'ResultIntent': function (){
 
         if (userMove + alexaMove == 'rockrock', 'scissorsscissors', 'paperpaper')
           { resultResponse == 'It is a tie'
       } else if (userMove + alexaMove == 'rockscissors', 'scissorspaper','paperrock') {
         let resultResponse == 'You won! Great job!'
       } else {  resultResponse == 'You lost, better luck next time'
-      }
+    }
 
 this.response.cardRenderer(SKILL_NAME, resultResponse);
 this.response.speak(resultResponse);
 this.emit.(':responseReady');
+}
 
 
+    'RematchIntent': funtion (){
+      this.response.cardRenderer(REMATCH);
+      this.response.speak(SKILL_NAME, REMATCH);
+      this.emit.(':responseReady');
+    }
+      let userResponse = this.event.request.intent.slots.userRematch.value;
+
+        do {const handlers = {
+            'LaunchRequest': function () {
+                this.response.speak(DIALOG_MOVE_PROMPT).listen(HELP_REPROMPT);
+                this.emit(':responseReady');
+            }
+        while (userResponse== 'yes');
+
+        if (userResponse== 'no')
+        this.response.cardRenderer(STOP_MESSAGE);
+        this.emit.(:'responseReady');
+        }
 
 
 
